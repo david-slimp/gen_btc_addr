@@ -4,6 +4,7 @@
 # 
 # Changelog
 # 20241012 - 0.1.1 - Added code to creat QR code png file from Bech32 address
+#                       Added README.md for github.com
 # 20241012 - 0.1.0 - Rewrote the script from scratch (using ChatGPT 4o) without using the bitcoinlib module
 
 import os
