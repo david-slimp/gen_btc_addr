@@ -1,4 +1,8 @@
 *.env
-bu/
-.git/
+env/
 .venv/
+
+bu/
+old/
+
+.git/

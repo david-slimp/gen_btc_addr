@@ -3,6 +3,7 @@
 # Author: David Slimp <rock808@David-Slimp.com>
 # 
 # Changelog
+# 20241012 - 0.1.1 - Added code to creat QR code png file from Bech32 address
 # 20241012 - 0.1.0 - Rewrote the script from scratch (using ChatGPT 4o) without using the bitcoinlib module
 
 import os
@@ -13,6 +14,7 @@ import base58
 import binascii
 import base64
 import bech32
+import qrcode
 
 def generate_key_pair(private_key_hex=None):
     # Hardcoded curve order
@@ -128,6 +130,19 @@ def generate_key_pair(private_key_hex=None):
 
     return private_key_hex, wif, wif_compressed, private_key_base64, public_key_hex, public_key_compressed_hex, public_address_uncompressed, public_address_compressed, bech32_address
 
+def generate_qr_code(data, filename):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(data)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill='black', back_color='white')
+    img.save(filename)
+
 if __name__ == "__main__":
     # Parse command-line arguments
     private_key_hex = None
@@ -153,6 +168,11 @@ if __name__ == "__main__":
         print(f"    Private Key WIF (Compressed): {wif_compressed} (Length: {len(wif_compressed)})")
         print(f"    Private Key (Hex): {private_key} (Length: {len(private_key)})")
         print(f"    Private Key (Base64): {private_key_base64} (Length: {len(private_key_base64)})")
+
+        # Generate QR Code for Bech32 address
+        qr_filename = f"bitcoin-{bech32_address}-qrCode.png"
+        generate_qr_code(bech32_address, qr_filename)
+        print(f"QR Code for Bech32 address saved as: {qr_filename}")
     except ValueError as e:
         print(f"Error: {e}")
         sys.exit(1)
