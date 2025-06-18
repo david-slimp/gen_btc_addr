@@ -28,7 +28,7 @@ def generate_key_pair(private_key_hex=None):
         raise ValueError("Curve order mismatch: the library's curve order does not match the expected hardcoded value.")
 
     if private_key_hex:
-        # Step 1: Use the provided private key
+        # Step 1: Use the provided private key, if given
         try:
             private_key_bytes = bytes.fromhex(private_key_hex)
         except ValueError:

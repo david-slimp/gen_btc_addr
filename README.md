@@ -16,7 +16,7 @@
   
   Example:
   ```sh
-  python3 gen_btc_addr.py -k d79c2d69c7eeaef52cfc7e2a35b5961ab77c4a0f637988a30436217007bd852a
+  python3 gen_btc_addr.py -k d984c9947ee1345411c1f6d893265c3808b5e9f82a64dc44f55dff491a575a52
   ```
 
 If no private key is provided, a new one will be randomly generated using secure randomness from `/dev/urandom`.
@@ -57,7 +57,7 @@ The script requires the following Python modules:
 
 You can install these dependencies using `pip`:
 ```sh
-pip install ecdsa base58 bech32 qrcode[pil]
+pip install ecdsa base58 bech32 qrcode pillow
 ```
 
 ## Example
